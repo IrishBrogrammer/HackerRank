@@ -1,0 +1,1 @@
+This repo contains solutions to problems on hacker rank
