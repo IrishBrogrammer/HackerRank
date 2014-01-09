@@ -1,18 +1,23 @@
 
 /* Problem
-	Given N integers, count the total pairs of integers that have a difference of K.
+Alice is a kindergarden teacher. She wants to give some candies to the children
+in her class.  All the children sit in a line and each  of them  has a rating
+score according to his or her usual performance.  Alice wants to give at least
+1 candy for each child.Children get jealous of their immediate neighbors, so if
+two children sit next to each other then the one with the higher rating must get
+more candies. Alice wants to save money, so she wants to minimize the total 
+number of candies.
 
-	Input Format 
-	1st line contains N & K (integers).
-	2nd line contains N numbers of the set. All the N numbers are assured to be distinct.
+Input
 
-	Output Format	
-	One integer saying the number of pairs of numbers that have a diff K.
+The first line of the input is an integer N, the number of children in Alice’s
+class. Each of the following N lines contains an integer indicates the rating 
+of each child.
 
-	Constraints:
-	N <= 10^5
-	0 < K < 10^9
-	Each integer will be greater than 0 and at least K away from 2^31-1
+Ouput
+
+Output a single line containing the minimum number of candies Alice must give.
+
 */
 
 using System;
