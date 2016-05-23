@@ -3,7 +3,7 @@
 gNumSteps = 0
 
 def main(): 
-    print "Let's go " 
+
     sizeOfLine = 5
     firstLine = [2,1,5,3,4]
     global gNumSteps
