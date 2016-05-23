@@ -14,13 +14,19 @@ def CreateTextMatrix( xSize , ySize ) :
             matrix[x].append("x")    
     
     return matrix
- 
- 
+  
 def ShouldStop( min , max ) :
     return min >= max
 
+def MarkMatrix( matrix , startX , endX , startY , endY , depth ) :
+     matrix[startY] = MarkRow( matrix[startY] ,  startX , endX , depth )
+     matrix[endY] = MarkRow( matrix[endY] ,startX , endX , depth  )
+     matrix = MarkColumn( startX , startY , endY , matrix , depth  )
+     matrix = MarkColumn( endX - 1 , startY , endY  , matrix , depth  )
+     return matrix
 
 def MarkDepths( startX , endX , startY , endY , depth , matrix ) :
+    
     xSize = endX - startX
     ySize = endY - startY 
     
@@ -33,10 +39,7 @@ def MarkDepths( startX , endX , startY , endY , depth , matrix ) :
     if  stop :
         return matrix
     else :
-        matrix[startY] = MarkRow( matrix[startY] ,  startX , endX , str(depth) )
-        matrix[endY] = MarkRow( matrix[endY] ,startX , endX , str( depth ) )
-        matrix = MarkColumn( startX , startY , endY , matrix , str(depth ) )
-        matrix = MarkColumn( endX - 1 , startY , endY  , matrix , str(depth ) )
+        matrix = MarkMatrix( matrix , startX , endX , startY , endY , str(depth) )
         matrix = MarkDepths( startX + 1 , endX - 1 , startY + 1 , endY - 1 , depth + 1 , matrix)
         return matrix
         
@@ -53,15 +56,17 @@ def MarkColumn( xVal , startY , endY , matrix , val ) :
     
     
     
-def MapoutMatrix( matrixToMap ) :
-    matrixToMap = MarkDepths( 0 , 4 , 0 , 4 , 1, matrixToMap )
+def MapoutMatrix( matrixToMap , xSize , ySize , rot ) :
+    matrixToMap = MarkDepths( 0 , xSize - 1 , 0 , ySize  , 1,  matrixToMap )
     
     return matrixToMap
 
 
-
-testMatrix = CreateTextMatrix( 5 , 4  )
-testMatrix = MapoutMatrix( testMatrix)
+xSize = 5
+ySize = 4
+numOfRotations = 1
+testMatrix = CreateTextMatrix( xSize , ySize  )
+testMatrix = MapoutMatrix( testMatrix , xSize , ySize , numOfRotations  )
 printMatrix( testMatrix )
 
 
